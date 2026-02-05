@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: "3.7"
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: ${TZ:-America/Toronto}
+      WEBPASSWORD: ${PIHOLE_PASSWORD}
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      TZ: ${TZ:-America/Toronto}
+      DB_TYPE: sqlite
+      EXECUTIONS_PROCESS: main
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
