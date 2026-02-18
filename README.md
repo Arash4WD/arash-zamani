@@ -2,8 +2,6 @@
 
 This repository defines and manages my personal home lab services using **Infrastructure as Code (IaC) principles** via Docker Compose and a small amount of Shell scripting. The project establishes a core home infrastructure platform for network-wide ad blocking and custom automation workflows.
 
-This is a demonstration of skills in containerization, configuration management, and operational scripting for a robust, persistent home server environment.
-
 ## ✨ Technologies Demonstrated
 
 | Category | Technology | Skill Highlighted |
